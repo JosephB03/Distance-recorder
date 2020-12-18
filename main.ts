@@ -1,8 +1,9 @@
+// Once the MicroBit receives the signal back, it executes the code
 radio.onReceivedNumber(function (receivedNumber) {
     if (receivedNumber == 36) {
         // Shows a tick so you know the signal was from the real sender
         basic.showIcon(IconNames.Yes)
-        basic.pause(500)
+        basic.pause(1000)
         basic.clearScreen()
         // If the signal strength is less than the value stored at distance, it will store the new value and turn on P0, a green LED.
         // If the signal strength is greater than the value stored at distance, it will turn on P1, a red LED
@@ -12,7 +13,7 @@ radio.onReceivedNumber(function (receivedNumber) {
         } else {
             pins.digitalWritePin(DigitalPin.P1, 1)
         }
-        basic.pause(1000)
+        basic.pause(5000)
         All_Lights_Off()
     }
 })
@@ -27,6 +28,7 @@ function All_Lights_Off () {
     pins.digitalWritePin(DigitalPin.P0, 0)
     pins.digitalWritePin(DigitalPin.P1, 0)
 }
+// Requests that the other MicroBit sends a signal
 input.onButtonPressed(Button.B, function () {
     radio.sendNumber(45)
 })
